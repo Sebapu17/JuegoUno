@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Uno</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .card-uno {
+            width: 8rem;
+            height: 12rem;
+        }
+
+        .card-uno .card-body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .card-back {
+            background-color: #777;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Uno</h1>
+    <!-- Opponent's Hand -->
+     <!-- Player's Hand -->
+    <div class="row mb-5">
+        <div class="col text-center">
+            <h3>Mano Actual</h3>
+        <div class="d-flex flex-wrap justify-content-center">
+            <!-- Iterar sobre las cartas en la mano del jugador -->
+            <div th:each="carta : ${partida.getJugadores().get(1).getMano()}" class="card card-uno m-2">
+                <div class="card-body">
+                    <!-- Mostrar cada carta como una imagen -->
+                    <!-- Asegúrate de que el atributo 'imagen' exista en tu objeto CartaUno -->
+                    <img th:src="@{${carta}}" alt="Carta" class="card-img-top">
+               </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Draw Pile and Discard Pile -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-4 text-center">
+            <h3>Mazo</h3>
+            <div class="card card-uno bg-primary text-white mx-auto">
+                <div class="card-body">
+                    <img class="card-body" th:src="@{card-back.png}" alt="Mazo"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4 text-center">
+            <h3>Pila de descarte</h3>
+            <div class="card card-uno bg-danger text-white mx-auto">
+                <div class="card-body">
+                    <img class="card-body" th:src="@{(${partida.getPrimeraCarta})}" alt="Primera Carta" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Player's Hand -->
+    <div class="row mb-5">
+        <div class="col text-center">
+            <h3>Mano Actual</h3>
+        <div class="d-flex flex-wrap justify-content-center">
+            <!-- Iterar sobre las cartas en la mano del jugador -->
+            <div th:each="carta : ${partida.getJugadores().get(0).getMano()}" class="card card-uno m-2">
+                <div class="card-body">
+                    <!-- Mostrar cada carta como una imagen -->
+                    <!-- Asegúrate de que el atributo 'imagen' exista en tu objeto CartaUno -->
+                    <img th:src="@{${carta}}" alt="Carta" class="card-img-top">
+               </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+</html>
